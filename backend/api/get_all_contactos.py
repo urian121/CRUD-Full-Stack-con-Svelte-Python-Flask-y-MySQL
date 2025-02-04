@@ -11,7 +11,7 @@ def get_all_contactos():
 
     try:
         with connection.cursor(dictionary=True) as cursor:
-            cursor.execute("SELECT * FROM tbl_contactos")
+            cursor.execute("SELECT *, CASE WHEN habla_ingles = 1 THEN 'Si' ELSE 'No' END  AS habla_ingles FROM tbl_contactos")
             contactos = cursor.fetchall()
             return jsonify(contactos), 200
     except Error as err:

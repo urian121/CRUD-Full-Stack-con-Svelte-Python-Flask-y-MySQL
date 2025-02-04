@@ -13,6 +13,7 @@ def create_contacto():
         data = request.get_json()
         nombre      = data.get('nombre')
         profesion   = data.get('profesion')
+        sexo        = data.get('sexo')
         edad        = data.get('edad')
         habla_ingles = data.get('habla_ingles')
 
@@ -20,7 +21,7 @@ def create_contacto():
             return jsonify({"error": "Todos los campos son requeridos"}), 400
 
         with connection.cursor(dictionary=True) as cursor:
-            cursor.execute("INSERT INTO tbl_contactos (nombre, profesion, edad, habla_ingles) VALUES (%s, %s, %s, %s)", (nombre, profesion, edad, habla_ingles))
+            cursor.execute("INSERT INTO tbl_contactos (nombre, profesion, sexo, edad, habla_ingles) VALUES (%s, %s, %s, %s, %s)", (nombre, profesion, sexo, edad, habla_ingles))
             connection.commit()
             return jsonify({"message": "Contacto creado correctamente"}), 201
     except Error as err:
