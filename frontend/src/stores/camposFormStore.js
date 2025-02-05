@@ -5,10 +5,11 @@
  */
 
 import { writable } from "svelte/store";
-import { toast } from "nextjs-toast-notify";
 
-export const URL_API = "http://127.0.0.1:5000/contactos"; // URL de la API de Flask en el servidor de desarrollo local.
+// URL de la API de Flask en el servidor de desarrollo local.
+export const URL_API = "http://127.0.0.1:5000/contactos";
 
+// Estado inicial de los campos del formulario
 export const sexo = writable("Masculino"); // Valor predeterminado
 export const nombre = writable(""); // Valor predeterminado
 export const profesion = writable(""); // Valor predeterminado
@@ -30,18 +31,4 @@ export const limpiarFormulario = () => {
   edad.set(18);
   habla_ingles.set(false);
   id.set(null);
-};
-
-/**
- *  Función para mostrar un toast (mensaje emergente) con un mensaje específico.
- */
-export const mostrarToast = (mensaje) => {
-  toast.success(mensaje, {
-    duration: 5000,
-    progress: true,
-    position: "bottom-center",
-    transition: "bounceIn",
-    icon: "",
-    sound: true,
-  });
 };
