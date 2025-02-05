@@ -1,10 +1,10 @@
-import { writable } from "svelte/store";
+import {
+  URL_API,
+  contactos,
+  limpiarFormulario,
+  mostrarToast,
+} from "../stores/camposFormStore";
 import axios from "axios";
-
-const URL_API = "http://127.0.0.1:5000/contactos";
-
-// Store para contactos
-export const contactos = writable([]);
 
 // Cargar contactos desde la API
 export const cargarContactos = async () => {
@@ -24,6 +24,9 @@ export const agregarContacto = async (nuevoContacto) => {
 
     // Actualizar la lista de contactos
     contactos.update((lista) => [...lista]);
+
+    limpiarFormulario();
+    mostrarToast("Contacto agregado con éxito");
   } catch (error) {
     console.error("Error al agregar el contacto:", error);
   }
@@ -34,6 +37,8 @@ export const eliminarContacto = async (id) => {
   try {
     await axios.delete(`${URL_API}/${id}`);
     contactos.update((lista) => lista.filter((contacto) => contacto.id !== id));
+
+    mostrarToast("Contacto eliminado con éxito");
   } catch (error) {
     console.error("Error al eliminar el contacto:", error);
   }

@@ -1,15 +1,18 @@
+import {
+  nombre,
+  sexo,
+  profesion,
+  edad,
+  habla_ingles,
+  URL_API,
+  limpiarFormulario,
+  mostrarToast,
+} from "../stores/camposFormStore";
+import { cargarContactos } from "../stores/contactStore";
 import { writable } from "svelte/store";
-import { get } from "svelte/store";
 import axios from "axios";
 
-export const contactoEditar = writable(null); // Esto ahora es un store reactivo
-let nombre = "";
-let sexo = "Masculino";
-let profesion = "";
-let edad = 18;
-let habla_ingles = false;
-
-const URL_API = "http://127.0.0.1:5000/contactos";
+export const contactoEditar = writable(null);
 
 // Función para cargar el contacto a editar
 export async function editarContacto(id) {
@@ -17,45 +20,31 @@ export async function editarContacto(id) {
     const response = await axios.get(`${URL_API}/${id}`);
     const contacto = response.data;
     console.log("Datos del contacto a editar:", contacto);
+
     // Rellenar el formulario con los datos del contacto
-    nombre = contacto.nombre;
-    sexo = contacto.sexo;
-    profesion = contacto.profesion;
-    edad = contacto.edad;
-    habla_ingles = contacto.habla_ingles;
-    contactoEditar.set(contacto); // Usamos .set() para actualizar el store
+    sexo.set(contacto.sexo.trim());
+    nombre.set(contacto.nombre);
+    profesion.set(contacto.profesion);
+    edad.set(contacto.edad);
+    habla_ingles.set(contacto.habla_ingles);
+
+    contactoEditar.set(contacto);
   } catch (error) {
     console.error("Error al obtener el contacto:", error);
   }
 }
 
-// Función para enviar el formulario (ya sea para agregar o editar)
-export async function enviarFormulario() {
-  const data = {
-    nombre,
-    sexo,
-    profesion,
-    edad,
-    habla_ingles,
-  };
-
+// Función para actualizar un contacto
+export const actualizarContacto = async (id_contacto, data) => {
   try {
-    if (get(contactoEditar)) {
-      // Si existe un contacto a editar, lo actualizamos
-      const response = await axios.put(
-        `${URL_API}/${get(contactoEditar).id}`,
-        data
-      );
-      console.log(response.data);
-      alert("Contacto actualizado con éxito");
-    } else {
-      // Si no hay contacto a editar, creamos uno nuevo
-      const response = await axios.post(URL_API, data);
-      console.log(response.data);
-      alert("Contacto creado con éxito");
-    }
+    const response = await axios.put(`${URL_API}/${id_contacto}`, data);
+    console.log("Respuesta del servidor:", response.data);
+    await cargarContactos(); // Recargar la lista desde la API
+
+    limpiarFormulario();
+    mostrarToast("Contacto actualizado con éxito");
   } catch (error) {
-    console.error("Error:", error);
-    alert("Hubo un error al enviar el formulario");
+    console.error("Error al actualizar el contacto:", error);
+    alert("Hubo un error al actualizar el contacto");
   }
-}
+};
