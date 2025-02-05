@@ -17,11 +17,15 @@ def update_contacto_by_id(contacto_id):
         edad        = data.get('edad')
         habla_ingles = data.get('habla_ingles')
         
-        if not nombre or not profesion or not edad or not habla_ingles or not id:
+        if not nombre or not profesion:
             return jsonify({"error": "Todos los campos son requeridos"}), 400
 
         with connection.cursor(dictionary=True) as cursor:
-            cursor.execute("UPDATE tbl_contactos SET nombre = %s, profesion = %s, sexo = %s, edad = %s, habla_ingles = %s WHERE id = %s", (nombre, profesion, sexo, edad, habla_ingles, contacto_id))
+            cursor.execute("""
+                UPDATE tbl_contactos
+                SET nombre = %s, profesion = %s, sexo = %s, edad = %s, habla_ingles = %s
+                WHERE id = %s
+            """, (nombre, profesion, sexo, edad, habla_ingles, id))
             connection.commit()
             return jsonify({"message": "Contacto actualizado correctamente"}), 200
     except Error as err:

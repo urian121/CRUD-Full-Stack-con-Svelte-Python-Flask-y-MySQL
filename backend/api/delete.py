@@ -2,6 +2,7 @@ from flask import jsonify
 from config_bd.bd import get_db_connection
 from mysql.connector import Error
 
+
 # Ruta para eliminar un contacto especifico
 def delete_contacto(contacto_id):
     connection = get_db_connection()  # Obtener la conexión una sola vez
