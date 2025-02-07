@@ -45,7 +45,6 @@ Este proyecto es una aplicación **Fullstack** que implementa un **CRUD (Create,
 - **Base de Datos:** MySQL
 - **Dependencias:** mysql-connector-python, Flask-CORS
 
-### Importante
 > [!IMPORTANT]
 > Esta aplicación demuestra cómo combinar **Svelte, Flask y MySQL** para construir un **CRUD Fullstack moderno, rápido y escalable**. Es una base sólida para desarrollar proyectos más avanzados con autenticación, roles de usuario, y más funcionalidades en el futuro. 🚀
 
