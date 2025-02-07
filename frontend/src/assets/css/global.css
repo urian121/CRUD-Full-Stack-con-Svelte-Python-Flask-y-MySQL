@@ -1,0 +1,38 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: cornsilk !important;
+}
+.container {
+ background-color: #fff !important;
+ border-radius: 5px;
+ box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+h1{
+  font-weight: 900 !important;
+}
+.color-morado{
+  color: #6401e4 !important;
+}
+.btn-primary {
+  background-color: #6401e4 !important;
+  border-color: #6401e4 !important;
+}
+.btn-primary:hover {
+  background-color: #4d00b3 !important;
+}
+.form-check-input:checked{
+  background-color: #6401e4 !important;
+  border: #4d00b3 !important;
+}
+input[type="range"]::-moz-range-thumb {
+  background-color: #4d00b3 !important;
+}
+
+  .card p {
+    margin-bottom: 0.5rem; /* Ajusta este valor según sea necesario */
+  }
+  .card_container {
+    height: 700px;
+    overflow-x: auto;
+    padding: 15px;
+  }

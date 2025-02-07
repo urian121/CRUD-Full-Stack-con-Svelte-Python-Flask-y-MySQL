@@ -28,12 +28,17 @@ def update_contacto_by_id(contacto_id):
             """, (nombre, profesion, sexo, edad, habla_ingles, contacto_id))
             connection.commit()
 
-            # Obtener el contacto actualizado
-            cursor.execute("SELECT * FROM tbl_contactos WHERE id = %s", (contacto_id,))
-            contacto_actualizado = cursor.fetchone()
+            # Construir el objeto con los datos actualizados
+            contacto_actualizado = {
+                "id": contacto_id,
+                "nombre": nombre,
+                "profesion": profesion,
+                "sexo": sexo,
+                "edad": edad,
+                "habla_ingles": habla_ingles
+            }
 
             return jsonify({"message": "Contacto actualizado correctamente", "contacto": contacto_actualizado}), 200
-
     except Error as err:
         return jsonify({"error": str(err)}), 500
     connection.close()  # Se cierra la conexión después del bloque try-except

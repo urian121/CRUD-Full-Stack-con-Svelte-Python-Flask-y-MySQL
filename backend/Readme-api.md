@@ -117,8 +117,6 @@ http://localhost:5000
 }
 ```
 
----
-
 ### **5️⃣ Eliminar un Contacto por ID**
 **📌 DELETE `/contactos/{contacto_id}`**
 
@@ -173,7 +171,20 @@ python api.py
 Puedes probar los endpoints con Postman, cURL o cualquier cliente API de tu preferencia. 🚀
 
 
-## 🛠 **Autor**
-**Desarrollador:** Urian Viera
 
-🔗 **Portafolio:** [urianviera.com](https://urianviera.com)
+## 🚀 Cómo puedes apoyar 📢
+***
+Si este proyecto te ha sido útil, aquí tienes algunas formas de ayudarme a seguir creando contenido de calidad:  
+
+✨ **Comparte este proyecto** con otros desarrolladores para que más personas puedan beneficiarse.  
+
+☕ **Invítame un café o una cerveza 🍺** para seguir motivado:  
+   - [Paypal](https://www.paypal.me/iamdeveloper86) (`iamdeveloper86@gmail.com`).  
+
+### ⚡ ¡Únete a la [Comunidad WebDeveloper](https://www.youtube.com/WebDeveloperUrianViera?sub_confirmation=1)!  
+Suscríbete y no te pierdas nuevos tutoriales, trucos y recursos para desarrolladores.  
+
+#### ⭐ **Déjanos una estrella en GitHub**  
+Dicen que trae buena suerte 🍀 y nos ayuda a crecer.  
+
+**¡Gracias por tu apoyo! 🤓🙌**
